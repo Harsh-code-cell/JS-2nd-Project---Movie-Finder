@@ -22,53 +22,63 @@ async function searchMovie(imdbID) {
 
 
 function displayMovie(data){
-    movieCardDetails.innerHTML =  ` <div>
-            <img src="${data.Poster}" alt="">
-        </div>
-
-        <div>
-            <h2>${data.Title}</h2>
-            <section>
-                <p>${data.Released}</p>
-                <p>${data.Rated}</p>
-                <p>${data.Released}</p>
-                <p>${data.Runtime}</p>
-                <p>${data.Genre}</p>
-                <p>${data.imdbRating} / 10</p>
-            </section>
-
-            <div>
-                <p>Plot Overview</p>
-                <p>${data.Plot}</p>
+    movieCardDetails.innerHTML = `
+        <article class="details-card">
+            <div class="details-poster">
+                <img src="${data.Poster !== "N/A" ? data.Poster : "https://via.placeholder.com/500x750?text=No+Poster"}" alt="${data.Title}">
             </div>
 
-            <div>
-                <section>
-                    <p>Director</p>
-                    <p>${data.Director}</p>
-                </section>
-                <section>
-                    <p>Writer</p>
-                    <p>${data.Writer}</p>
-                </section>
+            <div class="details-content">
+                <h1>${data.Title}</h1>
+
+                <div class="meta">
+                    <span>${data.Year}</span>
+                    <span>${data.Rated}</span>
+                    <span>${data.Runtime}</span>
+                    <span>⭐ ${data.imdbRating} / 10</span>
+                    <span>${data.Genre}</span>
+                </div>
+
+                <div class="detail-section">
+                    <p class="detail-label">Plot Overview</p>
+                    <p class="detail-value">${data.Plot}</p>
+                </div>
+
+                <div class="people-grid">
+                    <section class="detail-section">
+                        <p class="detail-label">Director</p>
+                        <p class="detail-value">${data.Director}</p>
+                    </section>
+
+                    <section class="detail-section">
+                        <p class="detail-label">Writer</p>
+                        <p class="detail-value">${data.Writer}</p>
+                    </section>
+
+                    <section class="detail-section">
+                        <p class="detail-label">Actors</p>
+                        <p class="detail-value">${data.Actors}</p>
+                    </section>
+
+                    <section class="detail-section">
+                        <p class="detail-label">Language</p>
+                        <p class="detail-value">${data.Language}</p>
+                    </section>
+
+                    <section class="detail-section">
+                        <p class="detail-label">Country</p>
+                        <p class="detail-value">${data.Country}</p>
+                    </section>
+
+                    <section class="detail-section">
+                        <p class="detail-label">Released</p>
+                        <p class="detail-value">${data.Released}</p>
+                    </section>
+                </div>
+
+                <a class="imdb-btn" href="https://www.imdb.com/title/${data.imdbID}" target="_blank" rel="noopener noreferrer">
+                    View on IMDb ↗
+                </a>
             </div>
-            <div>
-               <section>
-                    <p>Actors</p>
-                    <p>${data.Actors}</p>
-                </section> 
-            </div>
-            <div>
-                <section>
-                    <p>Language</p>
-                    <p>${data.Language}</p>
-                </section>
-                 <section>
-                    <p>Country</p>
-                    <p>${data.Country}</p>
-                </section>
-            </div>
-             <button><a href = https://www.imdb.com/title/${data.imdbID} target="_blank"  >View On IMDb</a>
-             </button>
-        </div>`
+        </article>`;
 }

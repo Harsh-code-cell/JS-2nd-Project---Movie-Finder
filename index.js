@@ -17,7 +17,7 @@ movieForm.addEventListener("submit", (e) => {
 
 
 async function searchMovies(movieName) {
-    movieHub.innerHTML = `<p>Searching Movie...</p>`
+    movieHub.innerHTML = `<p class="status">Searching for movies...</p>`
     let response = await fetch(`http://www.omdbapi.com/?s=${movieName}&apikey=d39ef08d`)
     let data = await response.json()
     console.log(data);
@@ -25,7 +25,7 @@ async function searchMovies(movieName) {
         displayMovies(data.Search)
     }
     else{
-        movieHub.innerHTML = `<p>${data.Error}</p>`
+        movieHub.innerHTML = `<p class="status">${data.Error}</p>`
     }
 }
 
@@ -37,15 +37,13 @@ function displayMovies(data) {
 
         div.dataset.id = movie.imdbID
         div.setAttribute("class" , "movie-card")
-        div.innerHTML = `<div>
-                <img src="${movie.Poster}"
-                    alt="">
+        div.innerHTML = `<div class="poster-wrap">
+                <img src="${movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/500x750?text=No+Poster"}" alt="${movie.Title}">
             </div>
-            <div>
-                <p>${movie.Title}</p>
-                <p>${movie.Year}</p>
-            </div>
-        </div>`
+            <div class="movie-info">
+                <p class="movie-title">${movie.Title}</p>
+                <p class="movie-year">${movie.Year}</p>
+            </div>`
         movieHub.append(div)
     });
 }
@@ -53,6 +51,7 @@ function displayMovies(data) {
 movieHub.addEventListener("click" , (e) => {
     e.stopPropagation();
     const movieCard = e.target.closest(".movie-card")
+    if (!movieCard) return
     const imdbID = movieCard.dataset.id
     location.href = `movie-detail.html?id=${imdbID}` //Used from redirecting to the other file of HTML , like pages separately mai open hona..
 })

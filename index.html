@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Finder- Find Your Favourite Movie</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Movie Finder — Discover Your Next Movie</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="flex justify-between p-5">
-        <h1 class="">Movie Finder</h1>
-        <nav class="flex gap-5 ">
-
-            <a href="">Home</a>
-            <a href="">About</a>
-            <a href="">Search</a>
-            <a href="">Content</a>
+    <header class="navbar">
+        <h1 class="logo">Movie<span>Finder</span></h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#movie-hub">Movies</a>
+            <a href="#search">Search</a>
         </nav>
-    </div>
-    <div>
-        <form id="movieForm" action="">
-            <input id="movieInput" class="border-2 p-2" type="text" placeholder="Search the Movie:">
-            <button class="border-2 p-2">Search</button>
-        </form>
-    </div>
-    <div id="movie-hub"></div>
+    </header>
+
+    <main>
+        <section class="hero" id="search">
+            <span class="badge">🎬 MOVIE DISCOVERY</span>
+            <h2>Find a movie.<br><span>Start an adventure.</span></h2>
+            <p>Search thousands of movies and discover ratings, cast, genres and everything you need to pick your next watch.</p>
+
+            <form id="movieForm" class="search-form">
+                <input id="movieInput" type="text" placeholder="Search for a movie..." autocomplete="off">
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <section id="movie-hub"></section>
+    </main>
+
     <script src="index.js"></script>
 </body>
-
 </html>
